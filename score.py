@@ -99,8 +99,8 @@ def score_response(
 def main():
     parser = argparse.ArgumentParser(description="Score student responses with an LLM.")
     parser.add_argument("--input",  required=True, help="Path to input CSV file")
-    parser.add_argument("--output", default="scored_output.csv", help="Path for output CSV (default: scored_output.csv)")
-    parser.add_argument("--model",  default="gpt-4o", help="OpenAI model to use (default: gpt-4o)")
+    parser.add_argument("--output", default="LLM_q+a+m+r.csv", help="Path for output CSV (default: scored_output.csv)")
+    parser.add_argument("--model",  default="gpt-5", help="OpenAI model to use (default: gpt-4o)")
     args = parser.parse_args()
 
     # ── Load data ──────────────────────────────────────────────────────────────
