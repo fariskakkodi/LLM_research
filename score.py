@@ -118,13 +118,13 @@ def main():
     total = len(df)
     scores = []
 
-    for i, row in enumerate(df.itertuples(index=False), start=1):
+    for i, (_, row) in enumerate(df.iterrows(), start=1):
         score = score_response(
             client,
-            question=getattr(row, QUESTION_COL.replace(".", "_")),
-            student_answer=getattr(row, "ResponseText_x"),
-            model_answer=getattr(row, MODEL_ANS_COL.replace(".", "_")),
-            rubric=getattr(row, RUBRIC_COL),
+            question=row[QUESTION_COL],
+            student_answer=row[STUDENT_ANS_COL],
+            model_answer=row[MODEL_ANS_COL],
+            rubric=row[RUBRIC_COL],
             model=args.model,
         )
         scores.append(score)
