@@ -90,4 +90,4 @@ Minor spelling/grammar issues, informal phrasing, or notation differences are no
 
 - The script prints live progress as rows are scored.
 - Rows where the model returns an unexpected value are saved as `None` in `predicted_label`.
-- Default model is `gpt-4o`. You can switch to `gpt-4-turbo`, `gpt-3.5-turbo`, etc. via `--model`.
+- Default model is `gpt-5`. You can switch to `gpt-4-turbo`, `gpt-3.5-turbo`, etc. via `--model`.
