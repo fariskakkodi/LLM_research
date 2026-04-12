@@ -36,7 +36,7 @@ python score.py --input <your_data.csv> [--output scored_output.csv] [--model gp
 |------------|----------|---------------------|--------------------------------------|
 | `--input`  | ✅       | —                   | Path to your input CSV file          |
 | `--output` | ❌       | `scored_output.csv` | Where to save the results            |
-| `--model`  | ❌       | `gpt-4o`            | OpenAI model to use for scoring      |
+| `--model`  | ❌       | `gpt-5`            | OpenAI model to use for scoring      |
 
 ### Example
 ```bash
