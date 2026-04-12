@@ -27,7 +27,7 @@ export OPENAI_API_KEY="sk-..."
 ## Usage
 
 ```bash
-python score.py --input <your_data.csv> [--output scored_output.csv] [--model gpt-4o]
+python score.py --input <your_data.csv> [--output scored_output.csv] [--model gpt-5]
 ```
 
 ### Arguments
