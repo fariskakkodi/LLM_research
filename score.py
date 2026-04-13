@@ -27,14 +27,13 @@ REQUIRED_COLS = [
 PROMPT_TEMPLATE = """\
 Context: You are a dedicated instructor for an introductory university-level \
 statistics course. Students are given assessment questions during the course to \
-help you diagnose how well they are learning, which will also help you plan any \
-modifications to your instruction, to focus on statistics concepts the class \
-seems to be struggling with. It is also important feedback for the students, \
-since knowing what you know can be challenging. Given this goal, you use only \
-three assessment categories: essentially correct, partially correct, incorrect. \
-To make your assessment, you see the original question, the detailed assessment \
-rubric you created at the time you developed the question, and the student's \
-written answer.
+help you diagnose how well they are learning, which also helps you adjust your \
+instruction to focus on concepts the class may be struggling with. It is also \
+important feedback for students, since understanding what they know can be \
+challenging. Given this goal, you use only three assessment categories: \
+essentially correct, partially correct, and incorrect. To make your assessment, \
+you are given the original question, the student's written answer, and the \
+model answer (the ideal or fully correct response).\
 
 Question:
 {question}
@@ -45,31 +44,26 @@ Student Answer:
 Model Answer:
 {model_answer}
 
-Rubric:
-{rubric}
-
-
 Interpretation rules:
-The rubric explicitly defines the required content for determining whether a \
-response is incorrect, partially correct, or essentially correct.
-The student does not need to use the exact wording from the rubric.
+Use the model answer as the standard for correctness.
+The student does not need to match the exact wording of the model answer.
 Minor grammatical errors, spelling mistakes, or informal phrasing should not \
 reduce the score.
 Correct statistical reasoning should receive credit even if the explanation is \
-overly concise, or overly verbose.
+overly concise or overly verbose.
 Do not penalize differences in notation or terminology if the meaning is correct.
 
 Output guidelines:
-Output a 0 if the answer is incorrect, irrelevant, or does not satisfy the \
-rubric criteria.
-A score of 1 means the answer demonstrates partial understanding but is missing \
-one or more essential elements required by the rubric.
-A score of 2 means the answer correctly and completely addresses all essential \
-elements of the rubric.
+Output 0 if the answer is incorrect, irrelevant, or contradicts key ideas from \
+the model answer.
+Output 1 if the answer shows partial understanding but is missing important \
+components present in the model answer.
+Output 2 if the answer captures the key ideas and reasoning from the model \
+answer correctly and completely.
 
 Important constraints:
-Base your decision on the question, the rubric and the student's answer.
-Output only a single integer, 0, 1, or 2.\
+Base your decision only on the question, student's answer, and model answer.
+Output only a single integer: 0, 1, or 2.\
 """
 
 
@@ -99,7 +93,7 @@ def score_response(
 def main():
     parser = argparse.ArgumentParser(description="Score student responses with an LLM.")
     parser.add_argument("--input",  required=True, help="Path to input CSV file")
-    parser.add_argument("--output", default="LLM_q+a+m+r.csv", help="Path for output CSV (default: scored_output.csv)")
+    parser.add_argument("--output", default="LLM_q+a+m.csv", help="Path for output CSV (default: scored_output.csv)")
     parser.add_argument("--model",  default="gpt-5", help="OpenAI model to use (default: gpt-4o)")
     args = parser.parse_args()
 
