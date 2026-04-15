@@ -32,11 +32,8 @@ instruction to focus on concepts the class may be struggling with. It is also \
 important feedback for students, since understanding what they know can be \
 challenging. Given this goal, you use only three assessment categories: \
 essentially correct, partially correct, and incorrect. To make your assessment, \
-you are given the original question, the student's written answer, and the \
+you are given the student's written answer, and the \
 model answer (the ideal or fully correct response).\
-
-Question:
-{question}
 
 Student Answer:
 {student_answer}
@@ -93,7 +90,7 @@ def score_response(
 def main():
     parser = argparse.ArgumentParser(description="Score student responses with an LLM.")
     parser.add_argument("--input",  required=True, help="Path to input CSV file")
-    parser.add_argument("--output", default="LLM_q+a+m.csv", help="Path for output CSV (default: scored_output.csv)")
+    parser.add_argument("--output", default="LLM_a+m.csv", help="Path for output CSV (default: scored_output.csv)")
     parser.add_argument("--model",  default="gpt-5", help="OpenAI model to use (default: gpt-4o)")
     args = parser.parse_args()
 
